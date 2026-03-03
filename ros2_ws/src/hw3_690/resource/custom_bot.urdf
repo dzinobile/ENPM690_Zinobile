@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<robot name="CustomBot">
+    <webots>
+        <plugin type="my_robot_driver::MyRobotDriver" />
+        <device reference="lidar1" type="Lidar">
+            <ros>
+                <alwaysOn>true</alwaysOn>
+            </ros>
+        </device>
+    </webots>
+</robot>

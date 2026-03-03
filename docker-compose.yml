@@ -1,0 +1,20 @@
+services:
+  hw3_690:
+    build: .
+    container_name: enpm690_hw3
+    volumes:
+      - ./ros2_ws:/ros2_ws
+      - webots_cache:/root/.ros
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - ROS_DOMAIN_ID=0
+      - DISPLAY=${DISPLAY}
+      - USER=root
+      - USERNAME=root
+      - QT_PLUGIN_PATH=/root/.ros/webotsR2025a/webots/lib/webots/qt/plugins
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  webots_cache:
