@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y \
     libopenal1 \
     libsndio7.0 \
     xvfb \
+    ros-humble-rviz2 \
     && rm -rf /var/lib/apt/lists/*
 
 # Set workspace as working directory

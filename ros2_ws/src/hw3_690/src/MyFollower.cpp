@@ -6,6 +6,10 @@
 using std::placeholders::_1;
 
 MyFollower::MyFollower() : Node("my_follower") {
+    declare_parameter("stop_area_fraction", 0.20);
+    stop_area_fraction_ = get_parameter("stop_area_fraction").as_double();
+    RCLCPP_INFO(get_logger(), "stop_area_fraction = %.2f", stop_area_fraction_);
+
     camera_subscriber_ =
         this->create_subscription<sensor_msgs::msg::Image>(
             "CustomBot/camera1/image_color",
@@ -57,12 +61,12 @@ void MyFollower::followObject(const sensor_msgs::msg::Image::SharedPtr msg) {
         // Visualise: draw contour and centroid on the output frame
         cv::drawContours(frame,
             std::vector<std::vector<cv::Point>>{*largest}, -1,
-            cv::Scalar(0, 255, 0), 2);
-        cv::circle(frame, cv::Point(cx, cy), 8, cv::Scalar(0, 0, 255), -1);
+            cv::Scalar(0, 0, 0), -1);
+        cv::circle(frame, cv::Point(cx, cy), 1, cv::Scalar(0, 0, 255), -1);
 
         double image_area = static_cast<double>(frame.cols * frame.rows);
 
-        if (area >= STOP_AREA_FRACTION * image_area) {
+        if (area >= stop_area_fraction_ * image_area) {
             // Object is close enough — stop
             cmd.linear.x = 0.0;
             cmd.angular.z = 0.0;
@@ -72,11 +76,13 @@ void MyFollower::followObject(const sensor_msgs::msg::Image::SharedPtr msg) {
             double normalised_error = (cx - frame.cols / 2.0) / (frame.cols / 2.0);
             cmd.linear.x = LINEAR_SPEED;
             cmd.angular.z = -ANGULAR_SPEED * normalised_error;
+            RCLCPP_INFO(get_logger(), "Object spotted, navigating to object!");
         }
     } else {
         // No yellow detected — spin in place to search
         cmd.linear.x = 0.0;
-        cmd.angular.z = ANGULAR_SPEED;
+        cmd.angular.z = -ANGULAR_SPEED;
+        RCLCPP_INFO(get_logger(), "Searching for object...");
     }
 
     cmd_vel_publisher_->publish(cmd);

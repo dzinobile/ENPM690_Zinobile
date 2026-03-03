@@ -18,6 +18,5 @@ private:
 
   static constexpr double LINEAR_SPEED  = 0.5;
   static constexpr double ANGULAR_SPEED = 1.0;
-  // Stop when object area exceeds this fraction of the total image area
-  static constexpr double STOP_AREA_FRACTION = 0.20;
+  double stop_area_fraction_;
 };
