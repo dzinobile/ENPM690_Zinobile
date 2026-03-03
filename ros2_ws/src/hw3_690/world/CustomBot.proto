@@ -194,25 +194,25 @@ PROTO CustomBot [
           }
         ]
       }
-      Lidar {
+      Camera {
+        translation 0.05 0 0.04
         children [
-          DEF LIDAR Transform {
+          DEF CAMERA Transform {
             children [
               Shape {
                 appearance PBRAppearance {
-                  baseColor 0 1 0
+                  baseColor 0 0 1
                   roughness 1
-                  metalness 0
+                  metalness 0 
                 }
-                geometry Cylinder {
-                  height 0.004
-                  radius 0.008
+                geometry Sphere {
+                  radius 0.01
                 }
               }
             ]
           }
         ]
-        name "lidar1"
+        name "camera1"
       }
     ]
     boundingObject Group {

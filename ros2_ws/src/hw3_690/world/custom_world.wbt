@@ -21,6 +21,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projec
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/tables/protos/Table.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/traffic/protos/DirectionPanel.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/plants/protos/BunchOfSunFlowers.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/develop/projects/objects/toys/protos/RubberDuck.proto"
 
 WorldInfo {
   info [
@@ -45,7 +46,9 @@ CustomBot {
     ""
   ]
 }
-
+RubberDuck {
+  translation 6 -2 0
+}
 
 Floor {
   translation 7.5 0 0

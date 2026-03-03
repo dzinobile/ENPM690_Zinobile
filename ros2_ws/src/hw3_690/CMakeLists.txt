@@ -11,6 +11,9 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(webots_ros2_driver REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(cv_bridge REQUIRED)
 
 # Export the plugin configuration file
 pluginlib_export_plugin_description_file(webots_ros2_driver my_robot_driver.xml)
@@ -44,6 +47,12 @@ add_executable(teleop_node src/MyTeleop.cpp)
 target_include_directories(teleop_node PRIVATE include)
 ament_target_dependencies(teleop_node rclcpp geometry_msgs)
 install(TARGETS teleop_node DESTINATION lib/${PROJECT_NAME})
+
+# MyFollower executable
+add_executable(follower_node src/MyFollower.cpp)
+target_include_directories(follower_node PRIVATE include)
+ament_target_dependencies(follower_node rclcpp sensor_msgs geometry_msgs OpenCV cv_bridge)
+install(TARGETS follower_node DESTINATION lib/${PROJECT_NAME})
 # Install additional directories.
 install(DIRECTORY
   launch

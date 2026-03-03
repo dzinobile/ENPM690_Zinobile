@@ -2,7 +2,7 @@
 <robot name="CustomBot">
     <webots>
         <plugin type="my_robot_driver::MyRobotDriver" />
-        <device reference="lidar1" type="Lidar">
+        <device reference="camera1" type="Camera">
             <ros>
                 <alwaysOn>true</alwaysOn>
             </ros>
