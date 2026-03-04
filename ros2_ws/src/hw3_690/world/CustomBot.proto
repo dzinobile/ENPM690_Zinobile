@@ -38,7 +38,7 @@ PROTO CustomBot [
           RotationalMotor {
             name "right wheel motor"
             consumptionFactor -0.001
-            maxVelocity 20
+            maxVelocity 80
           }
           PositionSensor {
             name "right wheel sensor"
@@ -93,7 +93,7 @@ PROTO CustomBot [
           RotationalMotor {
             name "left wheel motor"
             consumptionFactor -0.001
-            maxVelocity 20
+            maxVelocity 80
           }
           PositionSensor {
             name "left wheel sensor"

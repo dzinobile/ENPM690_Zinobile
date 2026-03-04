@@ -6,9 +6,17 @@
 using std::placeholders::_1;
 
 MyFollower::MyFollower() : Node("my_follower") {
-    declare_parameter("stop_area_fraction", 0.20);
-    stop_area_fraction_ = get_parameter("stop_area_fraction").as_double();
-    RCLCPP_INFO(get_logger(), "stop_area_fraction = %.2f", stop_area_fraction_);
+    declare_parameter("stop_fraction", 0.20);
+    stop_fraction_ = get_parameter("stop_fraction").as_double();
+    RCLCPP_INFO(get_logger(), "stop_fraction = %.2f", stop_fraction_);
+
+    declare_parameter("linear_speed", 0.5);
+    linear_speed_ = get_parameter("linear_speed").as_double();
+    RCLCPP_INFO(get_logger(), "linear_speed = %.2f", linear_speed_);
+
+    declare_parameter("angular_speed", 1.0);
+    angular_speed_ = get_parameter("angular_speed").as_double();
+    RCLCPP_INFO(get_logger(), "angular_speed = %.2f", angular_speed_);
 
     camera_subscriber_ =
         this->create_subscription<sensor_msgs::msg::Image>(
@@ -66,7 +74,7 @@ void MyFollower::followObject(const sensor_msgs::msg::Image::SharedPtr msg) {
 
         double image_area = static_cast<double>(frame.cols * frame.rows);
 
-        if (area >= stop_area_fraction_ * image_area) {
+        if (area >= stop_fraction_ * image_area) {
             // Object is close enough — stop
             cmd.linear.x = 0.0;
             cmd.angular.z = 0.0;
@@ -74,14 +82,14 @@ void MyFollower::followObject(const sensor_msgs::msg::Image::SharedPtr msg) {
         } else {
             // Drive forward and steer to keep object centred horizontally
             double normalised_error = (cx - frame.cols / 2.0) / (frame.cols / 2.0);
-            cmd.linear.x = LINEAR_SPEED;
-            cmd.angular.z = -ANGULAR_SPEED * normalised_error;
+            cmd.linear.x = linear_speed_;
+            cmd.angular.z = -angular_speed_* normalised_error;
             RCLCPP_INFO(get_logger(), "Object spotted, navigating to object!");
         }
     } else {
         // No yellow detected — spin in place to search
         cmd.linear.x = 0.0;
-        cmd.angular.z = -ANGULAR_SPEED;
+        cmd.angular.z = angular_speed_;
         RCLCPP_INFO(get_logger(), "Searching for object...");
     }
 

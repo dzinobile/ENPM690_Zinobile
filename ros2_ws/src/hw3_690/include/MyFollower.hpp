@@ -16,7 +16,7 @@ private:
   rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr camera_publisher_;
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_publisher_;
 
-  static constexpr double LINEAR_SPEED  = 0.5;
-  static constexpr double ANGULAR_SPEED = 1.0;
-  double stop_area_fraction_;
+  double linear_speed_ = 0.5;
+  double angular_speed_ = 1.0;
+  double stop_fraction_;
 };
