@@ -20,7 +20,7 @@ This repositiory is a containerized ros2 workspace with package "hw3_690" that s
             │   ├── MyFollower.cpp          # Source file for autonomous follow node
             │   ├── MyRobotDriver.cpp       # Source file for custom robot driver plugin
             │   └── MyTeleop.cpp            # Source file for custom teleoperation node
-            └── world
+            ├── world
             │   ├── CustomBot.proto         # Defines custom robot with Webots PROTO system
             │   ├── custom_world.wbt        # Defines custom world with Webots PROTO system
             │   └── meshes                  # Custom meshes designed in CAD for robot 
