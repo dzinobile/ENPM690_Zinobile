@@ -74,13 +74,13 @@ The autonomous tracking function directs the robot to search for and approach th
  - Stop when the area of yellow pixels is a certain percentage of the total screen area
 Once the robot stops, the duck can be moved around manually in Webots to make the robot track and follow it.
 
-The screen area percentage is an adjustable parameter, to influence how close the robot gets before stopping. To run with the default value of 20%, run:
+The screen area percentage is an adjustable parameter, to influence how close the robot gets before stopping. To run with the default value of 20% and default robot linear and angular speeds, run:
 ```bash
 ros2 run hw3_690 follower_node
 ```
-To run with a different value, in this example 35%, run:
+To run with different values for stop fraction, linear speed, or angular speed, run:
 ```bash
-ros2 run hw3_690 follower_node --ros-args -p stop_area_fraction:=0.35 #<- change as needed
+ros2 run hw3_690 follower_node --ros-args -p stop_fraction:=0.1 -p linear_speed:=0.25 -p angular_speed:=0.5 # Change values as needed
 ```
 The robot publishes images of the conturs and centroid of the tracked area on screen. To see these images, open a new terminal and run:
 ```bash
@@ -89,3 +89,4 @@ source install/setup.bash
 ros2 run rviz2 rviz2
 ```
 Then click add -> by topic -> tracked image -> image. 
+
