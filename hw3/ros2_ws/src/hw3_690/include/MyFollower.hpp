@@ -1,5 +1,5 @@
 #pragma once
-//topic CustomBot/camera1/image_color, type sensor_msgs/msg/Image
+
 #include "sensor_msgs/msg/image.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 #include "rclcpp/rclcpp.hpp"
