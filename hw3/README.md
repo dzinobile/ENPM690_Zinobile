@@ -8,7 +8,6 @@ This repositiory is a containerized ros2 workspace with package "hw3_690" that s
 └── ros2_ws                                 # ROS2 workspace
     └── src                                 
         └── hw3_690                         # ROS2 package 
-
             ├── include                     # Header files for ros2 nodes
             │   ├── MyFollower.hpp          
             │   ├── MyRobotDriver.hpp
@@ -22,14 +21,14 @@ This repositiory is a containerized ros2 workspace with package "hw3_690" that s
             │   ├── MyRobotDriver.cpp       # Source file for custom robot driver plugin
             │   └── MyTeleop.cpp            # Source file for custom teleoperation node
             └── world
-                ├── CustomBot.proto         # Defines custom robot with Webots PROTO system
-                ├── custom_world.wbt        # Defines custom world with Webots PROTO system
-                └── meshes                  # Custom meshes designed in CAD for robot 
-                    ├── base_link.dae
-                    └── wheel_link.dae
+            │   ├── CustomBot.proto         # Defines custom robot with Webots PROTO system
+            │   ├── custom_world.wbt        # Defines custom world with Webots PROTO system
+            │   └── meshes                  # Custom meshes designed in CAD for robot 
+            │       ├── base_link.dae
+            │       └── wheel_link.dae
             ├── my_robot_driver.xml         # XML for custom robot driver plugin
             ├── CMakeLists.txt              
-            ├── package.xml
+            └──  package.xml
 ```
 ## Dependencies
 - [Docker Engine](https://docs.docker.com/engine/install/)
